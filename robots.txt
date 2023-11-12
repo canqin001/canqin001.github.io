@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://canqin001.github.io/sitemap.xml
