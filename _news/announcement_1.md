@@ -1,8 +1,7 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2023-06-05 00:00:00-0000
 inline: true
 related_posts: false
 ---
-
-A simple inline announcement.
+I have passed the PhD Dissertation Defense and become Dr. Qin!

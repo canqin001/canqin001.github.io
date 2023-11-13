@@ -1,12 +1,10 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - canqin001
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - canqin001/PointDAN
+  - salesforce/UniControl
+  - salesforce/GlueGen
+  - canqin001/Efficient_Graph_Similarity_Computation
+  - ma-xu/Context-Cluster
+  - ma-xu/pointMLP-pytorch
