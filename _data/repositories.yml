@@ -6,5 +6,3 @@ github_repos:
   - salesforce/UniControl
   - salesforce/GlueGen
   - canqin001/Efficient_Graph_Similarity_Computation
-  - ma-xu/Context-Cluster
-  - ma-xu/pointMLP-pytorch
