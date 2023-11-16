@@ -20,4 +20,3 @@ Hello and welcome! I'm currently embracing the exciting world of artificial inte
 In 2023, I earned my Ph.D. from Northeastern University in Boston, USA. My research during this period was primarily centered around the realms of `Transfer Learning` and `Efficient AI`, where I delved into complex problems and innovative solutions.
 
 Before my Ph.D. journey, I obtained my B.E. degree from Xidian University in Xi'an, China, in 2018. This foundation laid the groundwork for my ongoing pursuit of knowledge and innovation.
-
