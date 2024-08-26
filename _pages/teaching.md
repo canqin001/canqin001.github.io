@@ -31,6 +31,7 @@ nav_order: 6
             <li>IEEE Transactions on Neural Networks and Learning Systems (TNNLS), Reviewer</li>
             <li>IEEE Transactions on Multimedia (TMM), Reviewer</li>
             <li>IEEE Transactions on Circuits and Systems for Video Technology (TCSVT) , Reviewer</li>
+            <li>Nature Communications, Reviewer</li>
         </ul>    
     </div>
 
