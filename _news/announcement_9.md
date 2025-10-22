@@ -4,4 +4,4 @@ date: 2025-10-23 00:00:00-0000
 inline: true
 related_posts: false
 ---
-Holitom was accepted by NeurIPS 25.
+Holitom was accepted by NeurIPS 25. We have released the CoDA (a 1.7b coding DLLM model).
