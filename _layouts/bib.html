@@ -180,6 +180,14 @@
           {%- endif %}
           {%- if entry.code %}
             <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">Code</a>
+            {%- assign code_path = entry.code | split: 'github.com/' | last | split: '?' | first | split: '/' -%}
+            {%- assign gh_owner = code_path[0] -%}
+            {%- assign gh_repo = code_path[1] -%}
+            {%- if entry.code contains 'github.com' and gh_owner != '' and gh_repo != '' %}
+            <a href="{{ entry.code }}" class="github-stars-badge" aria-label="GitHub stars">
+              <img src="https://img.shields.io/github/stars/{{ gh_owner }}/{{ gh_repo }}?style=flat-square&amp;label=stars" alt="GitHub stars" class="github-stars-img">
+            </a>
+            {%- endif %}
           {%- endif %}
           {%- if entry.poster %}
             {% if entry.poster contains '://' -%}

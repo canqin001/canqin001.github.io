@@ -1,7 +1,8 @@
 github_users:
   - canqin001
 
-github_repos:  - canqin001/PointDAN
+github_repos:
+  - canqin001/PointDAN
   - salesforce/UniControl
   - salesforce/GlueGen
   - canqin001/Efficient_Graph_Similarity_Computation

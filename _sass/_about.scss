@@ -1,0 +1,196 @@
+/*******************************************************************************
+ * About / Home page – hero, profile card, section styling
+ ******************************************************************************/
+
+// Hero block (name + subtitle)
+.about-hero {
+  text-align: center;
+  padding: 2rem 0 2.5rem;
+  margin: 0 calc(-50vw + 50%);
+  margin-bottom: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--hero-gradient-start), 0.06) 0%,
+    rgba(var(--hero-gradient-end), 0.04) 100%
+  );
+  border-bottom: 1px solid var(--global-divider-color);
+
+  .post-title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+    color: var(--global-text-color);
+  }
+
+  .desc {
+    font-size: 1.1rem;
+    color: var(--global-text-color-light);
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+// Profile card (photo + optional more_info) – floats next to bio
+.about-profile-card {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+
+  .profile {
+    margin: 0;
+    width: 100%;
+  }
+
+  .profile img {
+    width: 100%;
+    display: block;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .more-info {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--global-divider-color);
+  }
+}
+
+@media (min-width: 576px) {
+  .about-profile-card {
+    width: 30%;
+    max-width: 280px;
+    float: left;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-bio {
+    overflow: hidden; /* contain float */
+  }
+}
+
+// Section cards (news, publications)
+.about-section {
+  clear: both;
+  margin-bottom: 2.5rem;
+
+  .section-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--global-text-color);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 1.25em;
+      background: var(--global-theme-color);
+      border-radius: 2px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--global-theme-color);
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// Timeline-style news – scrollable window
+.about-section .news {
+  .table-responsive {
+    max-height: 280px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 8px;
+    padding: 0 0.5rem;
+  }
+
+  .table {
+    border: none;
+  }
+
+  tbody tr {
+    position: relative;
+    border: none;
+    transition: background 0.2s ease;
+  }
+
+  tbody tr:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  html[data-theme="dark"] & tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  th {
+    font-weight: 600;
+    color: var(--global-theme-color);
+    font-size: 0.85rem;
+    border: none;
+    padding: 0.75rem 1rem 0.75rem 0;
+    vertical-align: top;
+  }
+
+  td {
+    border: none;
+    padding: 0.75rem 0;
+    vertical-align: top;
+  }
+
+  .news-title {
+    color: var(--global-text-color);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--global-theme-color);
+      text-decoration: none;
+    }
+  }
+}
+
+// Selected papers section wrapper
+.about-section .publications {
+  margin-top: 0;
+
+  ol.bibliography > li {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  ol.bibliography > li:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Bio / intro block
+.about-bio {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+// Social strip at bottom
+.about-social {
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--global-divider-color);
+}

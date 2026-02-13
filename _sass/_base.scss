@@ -762,6 +762,18 @@ footer.sticky-bottom {
             border-color: var(--global-theme-color);
           }
         }
+
+        .github-stars-badge {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 0.35rem;
+
+          .github-stars-img {
+            height: 1.25rem;
+            width: auto;
+            vertical-align: middle;
+          }
+        }
       }
 
       .badges {

@@ -16,6 +16,8 @@
   --global-distill-app-color: #{$grey-color};
   --global-divider-color: rgba(0,0,0,.1);
   --global-card-bg-color: #{$white-color};
+  --hero-gradient-start: 147, 112, 219;  /* purple */
+  --hero-gradient-end: 38, 152, 186;     /* cyan */
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
@@ -61,6 +63,8 @@ html[data-theme='dark'] {
   --global-distill-app-color: #{$grey-color-light};
   --global-divider-color: #424246;
   --global-card-bg-color: #{$grey-900};
+  --hero-gradient-start: 38, 152, 186;   /* cyan */
+  --hero-gradient-end: 147, 112, 219;    /* purple */
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
