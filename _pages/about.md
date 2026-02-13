@@ -15,4 +15,6 @@ social: true  # includes social icons at the bottom of the page
 ---
 **Email:** *qin.ca[at]northeastern.edu*
 
-Hello and welcome! I am currently working at Google CoreML, focusing on building `Multimodal` and `GenMedia` models. Before that, I was at Salesforce AI Research. I received my Ph.D. from Northeastern University in Boston. During my studies, I interned at Adobe and Salesforce, building experience in real-world AI research and applications.
+Hello and welcome! Currently, I am working at **Google CoreML**, where I focus on building **Multimodal** and **GenMedia** models—working on systems that can understand and generate across text, image, video, and other modalities. Before joining Google, I was at **Salesforce AI Research**, contributing to multimodal models and generative AI. 
+
+I received my **Ph.D.** from **Northeastern University** in Boston, and during my studies I interned at **Adobe** and **Salesforce**, gaining hands-on experience in real-world AI research and product-oriented applications. I am passionate about the future and want to push the boundaries of what AI can see, reason about, and create.
