@@ -259,6 +259,11 @@ blockquote {
 
   .navbar-nav .nav-item .nav-link {
     color: var(--global-text-color);
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 
     &:hover {
       color: var(--global-hover-color);
@@ -355,15 +360,22 @@ blockquote {
     font-size: 4rem;
 
     a {
+      display: inline-block;
+      transition: transform 0.2s ease, filter 0.2s ease;
+
       i::before {
         color: var(--global-text-color);
-        transition-property: all 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out;
       }
 
       &:hover {
+        transform: scale(1.08);
+
         i::before {
           color: var(--global-theme-color);
         }
+
+        filter: drop-shadow(0 0 8px rgba(var(--hero-gradient-start), 0.4));
       }
     }
   }

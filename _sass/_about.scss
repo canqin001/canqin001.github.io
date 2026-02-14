@@ -3,58 +3,304 @@
  ******************************************************************************/
 
 // Hero block (name + subtitle)
-.about-hero {
-  text-align: center;
-  padding: 2rem 0 2.5rem;
-  margin: 0 calc(-50vw + 50%);
-  margin-bottom: 2rem;
-  background: linear-gradient(
-    135deg,
-    rgba(var(--hero-gradient-start), 0.06) 0%,
-    rgba(var(--hero-gradient-end), 0.04) 100%
-  );
-  border-bottom: 1px solid var(--global-divider-color);
-
-  .post-title {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.35rem;
-    color: var(--global-text-color);
+// Add a modifier class to the header for different styles:
+//   about-hero hero--glow       → soft glow on name
+//   about-hero hero--outline    → thin outline on name
+//   about-hero hero--underline  → animated underline under name
+//   about-hero hero--glass      → glassmorphism pill for subtitle
+//   about-hero hero--lines      → decorative lines around subtitle ("— Google —")
+// Tech-style background: dual grid + gradient (use with hero--grid)
+.about-hero.hero--grid {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    // Fine grid + coarser grid; fade grid toward edges so center stays clean
+    background-image:
+      radial-gradient(
+        ellipse 85% 70% at 50% 40%,
+        transparent 0%,
+        transparent 60%,
+        rgba(var(--hero-gradient-start), 0.04) 100%
+      ),
+      linear-gradient(rgba(var(--hero-gradient-start), 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--hero-gradient-start), 0.07) 1px, transparent 1px),
+      linear-gradient(rgba(var(--hero-gradient-start), 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--hero-gradient-start), 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 20px 20px, 20px 20px, 80px 80px, 80px 80px;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+    pointer-events: none;
   }
-
-  .desc {
-    font-size: 1.1rem;
-    color: var(--global-text-color-light);
-    font-weight: 500;
-    margin: 0;
+  // Refined vertical accent (IDE gutter) – thinner, softer
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      var(--global-theme-color) 25%,
+      var(--global-theme-color) 75%,
+      transparent 100%
+    );
+    opacity: 0.28;
+    pointer-events: none;
   }
 }
 
-// Profile card (photo + optional more_info) – floats next to bio
+.about-hero {
+  text-align: center;
+  padding: 2.5rem 1rem 3rem;
+  margin: 0 calc(-50vw + 50%);
+  margin-bottom: 2rem;
+  // Spotlight: brighter center, soft vignette at edges
+  background:
+    radial-gradient(
+      ellipse 100% 100% at 50% 45%,
+      rgba(var(--hero-gradient-start), 0.06) 0%,
+      rgba(var(--hero-gradient-end), 0.03) 45%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 140% 90% at 50% 0%,
+      rgba(var(--hero-gradient-start), 0.09) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(var(--hero-gradient-start), 0.06) 0%,
+      rgba(var(--hero-gradient-end), 0.03) 40%,
+      rgba(var(--hero-gradient-end), 0.015) 100%
+    );
+  border-bottom: 1px solid var(--global-divider-color);
+  position: relative;
+  overflow: hidden;
+
+  .post-title {
+    font-size: clamp(2.1rem, 6.5vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+    background: linear-gradient(
+      135deg,
+      var(--global-text-color) 0%,
+      var(--global-theme-color) 42%,
+      var(--global-theme-color) 58%,
+      var(--global-text-color) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hero-name-shimmer 8s ease-in-out infinite;
+    // Subtle depth so name reads clearly on grid
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.04));
+  }
+
+  // Dual-tone: first name in theme color, last name keeps gradient
+  .hero-first-name {
+    color: var(--global-theme-color);
+    -webkit-text-fill-color: var(--global-theme-color);
+  }
+  .hero-last-name {
+    font-weight: 700;
+  }
+
+  .desc {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+    margin: 0;
+    padding: 0.5rem 1.25rem 0.5rem 2.25rem;
+    color: var(--global-theme-color);
+    background: linear-gradient(
+      90deg,
+      rgba(var(--hero-gradient-start), 0.14) 0%,
+      rgba(var(--hero-gradient-start), 0.04) 25%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    border: 1px solid rgba(var(--hero-gradient-start), 0.4);
+    border-left: 3px solid var(--global-theme-color);
+    border-radius: 6px;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 0 0 1px rgba(var(--hero-gradient-start), 0.06);
+    z-index: 1;
+
+    &::before {
+      content: "$ ";
+      position: absolute;
+      left: 0.85rem;
+      color: var(--global-text-color-light);
+      font-weight: 500;
+    }
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 2px;
+      height: 1.05em;
+      background: var(--global-theme-color);
+      margin-left: 4px;
+      vertical-align: -0.2em;
+      animation: terminal-blink 1s step-end infinite;
+    }
+  }
+
+  html[data-theme="dark"] & .post-title {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+  }
+
+  html[data-theme="dark"] & .desc {
+    background: linear-gradient(
+      90deg,
+      rgba(var(--hero-gradient-start), 0.2) 0%,
+      rgba(var(--hero-gradient-start), 0.06) 25%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border-color: rgba(var(--hero-gradient-start), 0.5);
+    box-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(var(--hero-gradient-start), 0.1);
+  }
+
+  .desc:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 16px rgba(var(--hero-gradient-start), 0.2),
+      0 0 0 1px rgba(var(--hero-gradient-start), 0.1);
+    border-color: rgba(var(--hero-gradient-start), 0.5);
+  }
+}
+
+// --- Optional hero modifiers (add class to <header class="about-hero hero--glow">) ---
+.about-hero.hero--glow .post-title {
+  filter: drop-shadow(0 0 20px rgba(var(--hero-gradient-start), 0.35));
+  .hero-first-name { filter: none; }
+}
+
+.about-hero.hero--outline .post-title {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px var(--global-text-color);
+  .hero-first-name {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px var(--global-theme-color);
+  }
+}
+
+.about-hero.hero--underline .post-title {
+  padding-bottom: 0.25rem;
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    margin: 0.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--global-theme-color), transparent);
+    border-radius: 2px;
+    animation: hero-underline-grow 1s ease-out 0.3s forwards;
+  }
+}
+
+.about-hero.hero--glass .desc {
+  background: rgba(var(--hero-gradient-start), 0.08);
+  border: 1px solid rgba(var(--hero-gradient-start), 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.about-hero.hero--lines .desc {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 1.5rem;
+  &::before,
+  &::after {
+    content: "—";
+    margin: 0 0.5rem;
+    color: var(--global-text-color-light);
+    font-weight: 400;
+  }
+}
+
+@keyframes hero-name-shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+@keyframes hero-underline-grow {
+  to { width: 120px; }
+}
+
+@keyframes terminal-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+// Profile card – terminal window style (title bar + frame)
 .about-profile-card {
   background: var(--global-card-bg-color);
   border: 1px solid var(--global-divider-color);
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 0;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+
+  // Terminal title bar
+  &::before {
+    content: "PROFILE";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 12px;
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--global-text-color-light);
+    background: rgba(var(--hero-gradient-start), 0.12);
+    border-bottom: 1px solid var(--global-divider-color);
+    z-index: 1;
+  }
+
+  // Terminal-style left accent
+  border-left: 3px solid var(--global-theme-color);
+
+  &:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(var(--hero-gradient-start), 0.15);
+  }
 
   .profile {
     margin: 0;
     width: 100%;
+    margin-top: 28px;
   }
 
   .profile img {
     width: 100%;
     display: block;
-    border-radius: 12px 12px 0 0;
+    border-radius: 0;
   }
 
   .more-info {
     padding: 1rem 1.25rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
     border-top: 1px solid var(--global-divider-color);
+    color: var(--global-text-color-light);
+    line-height: 1.5;
   }
 }
 
@@ -81,19 +327,22 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--global-text-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+    color: var(--global-text-color-light);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     margin-bottom: 1.25rem;
-    padding-bottom: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(var(--hero-gradient-start), 0.08);
+    border: 1px solid rgba(var(--hero-gradient-start), 0.2);
+    border-radius: 6px;
 
     &::before {
-      content: "";
-      display: inline-block;
-      width: 4px;
-      height: 1.25em;
-      background: var(--global-theme-color);
-      border-radius: 2px;
+      content: ">";
+      color: var(--global-theme-color);
+      font-weight: 500;
     }
 
     a {
@@ -108,15 +357,38 @@
   }
 }
 
-// Timeline-style news – scrollable window
+// News – terminal output style
 .about-section .news {
   .table-responsive {
     max-height: 280px !important;
     overflow-y: auto;
     overflow-x: hidden;
     border: 1px solid var(--global-divider-color);
-    border-radius: 8px;
-    padding: 0 0.5rem;
+    border-radius: 6px;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.02);
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+    position: relative;
+
+    &::before {
+      content: "news";
+      display: block;
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--global-text-color-light);
+      background: rgba(var(--hero-gradient-start), 0.1);
+      border-bottom: 1px solid var(--global-divider-color);
+    }
+  }
+
+  .table-responsive .table {
+    margin: 0.5rem 1rem 0.75rem;
+  }
+
+  html[data-theme="dark"] & .table-responsive {
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .table {
@@ -138,24 +410,34 @@
   }
 
   th {
-    font-weight: 600;
+    font-weight: 500;
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
     color: var(--global-theme-color);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     border: none;
-    padding: 0.75rem 1rem 0.75rem 0;
+    padding: 0.5rem 0.75rem 0.5rem 0;
     vertical-align: top;
+    width: 20%;
+    white-space: nowrap;
+
+    &::before {
+      content: "> ";
+      color: var(--global-text-color-light);
+    }
   }
 
   td {
     border: none;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     vertical-align: top;
+    font-size: 0.9rem;
   }
 
   .news-title {
     color: var(--global-text-color);
     text-decoration: none;
     font-weight: 500;
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
     &:hover {
       color: var(--global-theme-color);
@@ -188,9 +470,20 @@
   }
 }
 
-// Social strip at bottom
+// Social strip – terminal-style label
 .about-social {
   padding-top: 1.5rem;
   margin-top: 2rem;
   border-top: 1px solid var(--global-divider-color);
+
+  .contact-icons {
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+  }
+
+  .contact-note {
+    font-family: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+    font-size: 0.75rem;
+    color: var(--global-text-color-light);
+    margin-top: 0.5rem;
+  }
 }
